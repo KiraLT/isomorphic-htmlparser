@@ -26,7 +26,7 @@
         "build": "npm run build:node && npm run build:browser && npm run build:docs",
         "build:node": "microbundle build ./src/node/index.ts -f esm,cjs",
         "build:browser": "microbundle build ./src/browser/index.ts -f modern,umd",
-        "build:docs": "typedoc src/node/index.ts && cp -r ./demo ./dist/demo",
+        "build:docs": "typedoc src/node/index.ts && cp -r ./demo docs/demo && cp -r ./dist docs/dist",
         "prettify": "prettier --write \"{src,spec}/**/*.ts\""
     },
     "files": [
