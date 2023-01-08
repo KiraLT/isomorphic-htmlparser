@@ -7,6 +7,9 @@ export interface ParseHTML {
     (html: string): IsomorphicHTMLElement
 }
 
+/**
+ * Structure representing one HTML element
+ */
 export interface IsomorphicHTMLElement {
     /**
      * Find one HTML element by provided HTML Selector
