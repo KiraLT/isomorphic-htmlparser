@@ -32,8 +32,11 @@ Import what you need:
 ```typescript
 import { parseHTML } from 'isomorphic-htmlparser'
 
-const text = parseHTML(html).find('.my-class > a.title')
-console.log(text)
+const el = parseHTML(html).find('.my-class > a.title')
+const text = parseHTML(html).extract('.my-class > a.title @ text | trim')
+
+console.log(el.text.trim() === text)
+// true
 ```
 
 > Always import only what is necessary to take full advantage of [tree shaking](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking).
@@ -47,10 +50,12 @@ Include script from CDN and use `isomorphicHtmlparser` global variable:
 ```html
 <script src="https://unpkg.com/isomorphic-htmlparser"></script>
 <script>
-  const text = isomorphicHtmlparser
-    .parseHTML(html)
-    .find('.my-class > a.title')
-  console.log(text)
+  const { parseHTML } = window.isomorphicHtmlparser
+
+  const el = parseHTML(html).find('.my-class > a.title')
+  const text = parseHTML(html).extract('.my-class > a.title @ text | trim')
+
+  console.log(el.text.trim() === text)
+  // true
 </script>
 ```
-

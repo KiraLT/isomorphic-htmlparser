@@ -35,6 +35,11 @@
       function App() {
         const [result, setResult] = React.useState()
         const [error, setError] = React.useState('')
+        const [mode, setMode] = React.useState('extract')
+
+        const updateMode = (event) => {
+          setMode(event.target.value)
+        }
 
         return <div class="container mt-5">
           <h2 class="text-center">Isomorphic HTMLParser demo</h2>
@@ -43,9 +48,13 @@
             const data = new FormData(event.target)
 
             try {
-              setResult(isomorphicHtmlparser
-                .parseHTML(data.get('html'))
-                .findAll(data.get('selector')))
+              const parsed = isomorphicHtmlparser.parseHTML(data.get('html'))
+              setResult(
+                mode === 'find' ?
+                  parsed.findAll(data.get('selector')) :
+                  parsed.extractAll(data.get('selector'))
+              )
+
               setError('')
             } catch (err) {
               setError(err instanceof Error ? err.message : String(err))
@@ -62,19 +71,31 @@
                 <textarea name="html" class="form-control col-sm-10 mt-2" id="html-input" rows="5" defaultValue={defaultHtml} />
               </div>
             </div>
+
             <div class="form-group row">
-              <label for="html-selector" class="col-sm-2 col-form-label mt-2">CSS selector</label>
-              <div class="col-sm-10 mt-2">
-                <input name="selector" type="text" class="form-control" id="html-selector" defaultValue=".content"/>
+              <label for="html-selector" class="col-sm-2 col-form-label mt-2">Selector</label>
+              <div class="col-sm-10 mt-2" key={mode}>
+                <input name="selector" type="text" class="form-control" id="html-selector" defaultValue={mode === 'find' ? '.content' : '.content @ attrs.data-track | trim'}/>
               </div>
             </div>
+
+            <nav class="nav nav-pills mt-3 mb-3 justify-content-center">
+              <a class={`nav-link ${mode === 'extract' ? 'active' : ''}`} href="javascript:void(0)" onClick={() => {
+                setResult(undefined)
+                setMode('extract')
+              }}>Extract</a>
+              <a class={`nav-link ${mode === 'find' ? 'active' : ''}`} href="javascript:void(0)" onClick={() => {
+                setResult(undefined)
+                setMode('find')
+              }}>Find</a>
+            </nav>
 
             <div class="d-flex justify-content-center">
               <button type="submit" class="btn btn-primary mt-2">Parse HTML</button>
             </div>
           </form>
 
-          {result && !!result.length && <div>
+          {result && result.length > 0 && <div>
             <table class="table mt-5">
               <tbody>
                 {result.map((el, i) => <React.Fragment>
@@ -83,11 +104,15 @@
                       Element #{i + 1}
                     </th>
                   </tr>
-                  <tr>
+                  {mode === 'extract' && <tr>
+                    <td>Value</td>
+                    <td>{String(el)}</td>
+                  </tr>}
+                  {mode === 'find' && <tr>
                     <td>Text</td>
                     <td>{el.text}</td>
-                  </tr>
-                  <tr>
+                  </tr>}
+                  {mode === 'find' && <tr>
                     <td>Attributes</td>
                     <td>
                       <table class="table">
@@ -99,7 +124,7 @@
                         </tbody>
                       </table>
                     </td>
-                  </tr>
+                  </tr>}
                 </React.Fragment>)}
               </tbody>
             </table>
