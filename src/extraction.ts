@@ -96,7 +96,7 @@ function applyFilters(
 /**
  * Default extraction filters
  */
-export const defaultFilters: Record<string, Filter> = {
+export const defaultFilters = {
     /**
      * Trims string start & end
      *
@@ -107,7 +107,7 @@ export const defaultFilters: Record<string, Filter> = {
      * const output   = `heLLo`
      * ```
      */
-    trim: (value) => {
+    trim: (value: unknown) => {
         return typeof value === 'string' ? value.trim() : value
     },
     /**
@@ -120,7 +120,7 @@ export const defaultFilters: Record<string, Filter> = {
      * const output   = `hello`
      * ```
      */
-    lowercase: (value) => {
+    lowercase: (value: unknown) => {
         return typeof value === 'string' ? value.toLowerCase() : value
     },
     /**
@@ -133,7 +133,7 @@ export const defaultFilters: Record<string, Filter> = {
      * const output   = `HELLO`
      * ```
      */
-    uppercase: (value) => {
+    uppercase: (value: unknown) => {
         return typeof value === 'string' ? value.toUpperCase() : value
     },
     /**
@@ -146,7 +146,7 @@ export const defaultFilters: Record<string, Filter> = {
      * const output   = `Hello World`
      * ```
      */
-    titlecase: (value) => {
+    titlecase: (value: unknown) => {
         return typeof value === 'string' ? titleCase(value) : value
     },
     /**
@@ -159,7 +159,7 @@ export const defaultFilters: Record<string, Filter> = {
      * const output   = `dlrow olleh`
      * ```
      */
-    reverse: function (value) {
+    reverse: function (value: unknown) {
         return typeof value === 'string'
             ? value.split('').reverse().join('')
             : value
@@ -174,7 +174,7 @@ export const defaultFilters: Record<string, Filter> = {
      * const output   = `el`
      * ```
      */
-    slice: function (value, start, end) {
+    slice: function (value: unknown, start: unknown, end: unknown) {
         return typeof value === 'string'
             ? value.slice(
                   parseInt(String(start), 10) || undefined,
