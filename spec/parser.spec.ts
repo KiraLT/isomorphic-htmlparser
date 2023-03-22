@@ -7,6 +7,8 @@ const html = `
 
 <h1>
     My First Heading
+
+
 </h1>
 <p>My first paragraph.</p>
 <div class="body">
@@ -81,6 +83,12 @@ describe('parseHTML', () => {
         const dom = parseHTML(html)
 
         expect(dom.extract('h1 @ text | trim | slice:3,8')).toBe('First')
+    })
+
+    it('extracts heading and slice it by start only', () => {
+        const dom = parseHTML(html)
+
+        expect(dom.extract('h1 @ text | trim | slice:3')).toBe('First Heading')
     })
 
     it('extracts multiple attribute', () => {
