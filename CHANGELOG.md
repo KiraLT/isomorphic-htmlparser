@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.1.0...v1.1.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* extract filter arguments fix ([e6af477](https://github.com/KiraLT/isomorphic-htmlparser/commit/e6af4770d20219c126e0699d469b4552d523eaff))
+
 # [1.1.0](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.0.1...v1.1.0) (2023-01-26)
 
 
