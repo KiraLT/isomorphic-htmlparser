@@ -58,11 +58,11 @@ function parseFilters(filters: string[]): ExtractExpression['filters'] {
             ? [
                   {
                       name: name,
-                      args: [
-                          ...parts
+                      args: Array.from(
+                          parts
                               .join(':')
-                              .matchAll(/"([^"]*)"|'([^']*)'|([^ \t,]+)/g),
-                      ]
+                              .matchAll(/"([^"]*)"|'([^']*)'|([^ \t,]+)/g)
+                      )
                           .map((v) => v[2] || v[1] || v[0])
                           .filter((v) => !!v),
                   },
