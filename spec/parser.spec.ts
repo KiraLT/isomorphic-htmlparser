@@ -18,6 +18,9 @@ const html = `
 <div id="size">
     7.4 GB
 </div>
+<div id="number">
+    7.4
+</div>
 </body>
 </html>
 `
@@ -62,7 +65,7 @@ describe('parseHTML', () => {
         const dom = parseHTML(html)
 
         expect(dom.extract('h1 @ text | trim | lowercase')).toBe(
-            'my first heading'
+            'my first heading',
         )
     })
 
@@ -70,7 +73,7 @@ describe('parseHTML', () => {
         const dom = parseHTML(html)
 
         expect(dom.extract('h1 @ text | trim | uppercase')).toBe(
-            'MY FIRST HEADING'
+            'MY FIRST HEADING',
         )
     })
 
@@ -78,7 +81,7 @@ describe('parseHTML', () => {
         const dom = parseHTML(html)
 
         expect(dom.extract('h1 @ text | trim | titlecase')).toBe(
-            'My First Heading'
+            'My First Heading',
         )
     })
 
@@ -106,6 +109,20 @@ describe('parseHTML', () => {
     it('extracts heading and slice it', () => {
         const dom = parseHTML(html)
 
-        expect(dom.extract('#size @ text | trim | parseSize')).toBe(7945689497.6)
+        expect(dom.extract('#size @ text | trim | parseSize')).toBe(
+            7945689497.6,
+        )
+    })
+
+    it('extracts int', () => {
+        const dom = parseHTML(html)
+
+        expect(dom.extract('#number @ text | parseInt')).toBe(7)
+    })
+
+    it('extracts float', () => {
+        const dom = parseHTML(html)
+
+        expect(dom.extract('#number @ text | parseFloat')).toBe(7.4)
     })
 })

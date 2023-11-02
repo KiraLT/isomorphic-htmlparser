@@ -8,7 +8,7 @@ export const parseHTML: ParseHTML = (html) => {
 
 function createElement(
     $: CheerioAPI,
-    element?: AnyNode
+    element?: AnyNode,
 ): IsomorphicHTMLElement {
     return {
         find(selector) {
@@ -33,7 +33,7 @@ function createElement(
             return extractAll(
                 selector,
                 (v) => this.find(v),
-                extraFilters
+                extraFilters,
             )[0] as any
         },
         extractAll(selector, extraFilters) {

@@ -72,7 +72,7 @@ export interface IsomorphicHTMLElement {
      */
     extract<T>(
         selector: string,
-        extraFilters?: Record<string, Filter>
+        extraFilters?: Record<string, Filter>,
     ): T | undefined
     /**
      * Extract value by provided selector

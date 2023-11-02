@@ -21,14 +21,14 @@ function createElement(element: Element): IsomorphicHTMLElement {
         },
         findAll(selector) {
             return Array.from(element.querySelectorAll(selector)).map((v) =>
-                createElement(v)
+                createElement(v),
             )
         },
         extract(selector, extraFilters) {
             return extractAll(
                 selector,
                 (v) => this.find(v),
-                extraFilters
+                extraFilters,
             )[0] as any
         },
         extractAll(selector, extraFilters) {
@@ -42,7 +42,7 @@ function createElement(element: Element): IsomorphicHTMLElement {
                 {},
                 ...Array.from(element.attributes, ({ name, value }) => ({
                     [name]: value,
-                }))
+                })),
             )
         },
         get nextSibling() {

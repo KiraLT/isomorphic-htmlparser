@@ -13,7 +13,7 @@ export type Filter = (value: unknown, ...args: unknown[]) => unknown
 export function extractAll<T>(
     expression: string,
     target: (selector: string) => unknown,
-    extraFilters?: Record<string, Filter>
+    extraFilters?: Record<string, Filter>,
 ): T[] {
     const parsed = parseExtractExpression(expression)
     const values = ensureArray(target(parsed.selector))
@@ -25,7 +25,7 @@ export function extractAll<T>(
             {
                 ...defaultFilters,
                 ...extraFilters,
-            }
+            },
         )
     }) as T[]
 }
@@ -61,7 +61,7 @@ function parseFilters(filters: string[]): ExtractExpression['filters'] {
                       args: Array.from(
                           parts
                               .join(':')
-                              .matchAll(/"([^"]*)"|'([^']*)'|([^ \t,]+)/g)
+                              .matchAll(/"([^"]*)"|'([^']*)'|([^ \t,]+)/g),
                       )
                           .map((v) => v[2] || v[1] || v[0])
                           .filter((v) => !!v),
@@ -74,7 +74,7 @@ function parseFilters(filters: string[]): ExtractExpression['filters'] {
 function applyFilters(
     value: unknown,
     filtersConfig: ExtractExpression['filters'],
-    filters: Record<string, Filter>
+    filters: Record<string, Filter>,
 ): unknown {
     return filtersConfig.reduce((prev, cur) => {
         const filter = filters[cur.name]
@@ -84,8 +84,8 @@ function applyFilters(
                 `Filter ${
                     cur.name
                 } does not exist, available filters: ${Object.keys(
-                    filters
-                ).join(', ')}`
+                    filters,
+                ).join(', ')}`,
             )
         }
 
@@ -154,12 +154,12 @@ export const defaultFilters = {
      *
      * @example
      * ```
-     * const selector = `.container @ text | titlecase`
+     * const selector = `.container @ text | reverse`
      * const input    = `hello world`
      * const output   = `dlrow olleh`
      * ```
      */
-    reverse: function (value: unknown): string {
+    reverse: (value: unknown): string => {
         return String(value).split('').reverse().join('')
     },
     /**
@@ -172,10 +172,10 @@ export const defaultFilters = {
      * const output   = `el`
      * ```
      */
-    slice: function (value: unknown, start: unknown, end: unknown): string {
+    slice: (value: unknown, start: unknown, end: unknown): string => {
         return String(value).slice(
             parseInt(String(start), 10) || undefined,
-            parseInt(String(end)) || undefined
+            parseInt(String(end)) || undefined,
         )
     },
     /**
@@ -184,11 +184,39 @@ export const defaultFilters = {
      * @example
      * ```
      * const selector = `#size @ text | trim | parseSize`
-     * const input    = `7.4 GiB`
-     * const output   = `el`
+     * const input    = `7.4 GB`
+     * const output   = `7945689497.6`
      * ```
      */
-    parseSize: function (value: unknown): number {
+    parseSize: (value: unknown): number => {
         return parseSize(defaultFilters.trim(value))
+    },
+    /**
+     * Parses int from text
+     *
+     * @example
+     * ```
+     * const selector = `#number @ text | trim | parseInt`
+     * const input    = `7 `
+     * const output   = 7
+     * ```
+     */
+    parseInt: (value: unknown): number | undefined => {
+        const parsed = parseInt(defaultFilters.trim(value), 10)
+        return isNaN(parsed) ? undefined : parsed
+    },
+    /**
+     * Parses float from text
+     *
+     * @example
+     * ```
+     * const selector = `#number @ text | trim | parseFloat`
+     * const input    = `7.6 `
+     * const output   = 7.6
+     * ```
+     */
+    parseFloat: (value: unknown): number | undefined => {
+        const parsed = parseFloat(defaultFilters.trim(value))
+        return isNaN(parsed) ? undefined : parsed
     },
 }
