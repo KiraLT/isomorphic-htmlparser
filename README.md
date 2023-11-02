@@ -50,12 +50,12 @@ Include script from CDN and use `isomorphicHtmlparser` global variable:
 ```html
 <script src="https://unpkg.com/isomorphic-htmlparser"></script>
 <script>
-  const { parseHTML } = window.isomorphicHtmlparser
+    const { parseHTML } = window.isomorphicHtmlparser
 
-  const el = parseHTML(html).find('.my-class > a.title')
-  const text = parseHTML(html).extract('.my-class > a.title @ text | trim')
+    const el = parseHTML(html).find('.my-class > a.title')
+    const text = parseHTML(html).extract('.my-class > a.title @ text | trim')
 
-  console.log(el.text.trim() === text)
-  // true
+    console.log(el.text.trim() === text)
+    // true
 </script>
 ```

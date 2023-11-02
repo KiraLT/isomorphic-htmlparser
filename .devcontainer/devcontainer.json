@@ -1,8 +1,8 @@
 {
-  "name": "isomorphic-htmlparser",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {}
-  },
-  "updateContentCommand": "npm install"
+    "name": "isomorphic-htmlparser",
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
+    "updateContentCommand": "npm install"
 }

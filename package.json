@@ -28,7 +28,7 @@
         "build:browser": "microbundle build ./src/browser/index.ts -f umd",
         "build:umd": "microbundle build ./src/browser/index.ts -f umd --external none",
         "build:docs": "typedoc src/index.ts && cp -r ./demo docs/demo && cp -r ./dist docs/dist",
-        "prettify": "prettier --write \"{src,spec}/**/*.ts\""
+        "prettify": "prettier --write \"**/*.{ts,json,md}\""
     },
     "files": [
         "dist/**/*"
