@@ -1,4 +1,4 @@
-import { ensureArray, getByKey, titleCase } from 'common-stuff'
+import { ensureArray, getByKey, titleCase, parseSize } from 'common-stuff'
 
 interface ExtractExpression {
     selector: string
@@ -107,8 +107,8 @@ export const defaultFilters = {
      * const output   = `heLLo`
      * ```
      */
-    trim: (value: unknown) => {
-        return typeof value === 'string' ? value.trim() : value
+    trim: (value: unknown): string => {
+        return String(value).trim()
     },
     /**
      * Lowercase string
@@ -120,8 +120,8 @@ export const defaultFilters = {
      * const output   = `hello`
      * ```
      */
-    lowercase: (value: unknown) => {
-        return typeof value === 'string' ? value.toLowerCase() : value
+    lowercase: (value: unknown): string => {
+        return String(value).toLowerCase()
     },
     /**
      * Uppercase string
@@ -134,7 +134,7 @@ export const defaultFilters = {
      * ```
      */
     uppercase: (value: unknown) => {
-        return typeof value === 'string' ? value.toUpperCase() : value
+        return String(value).toUpperCase()
     },
     /**
      * Uppercase first word letters
@@ -146,8 +146,8 @@ export const defaultFilters = {
      * const output   = `Hello World`
      * ```
      */
-    titlecase: (value: unknown) => {
-        return typeof value === 'string' ? titleCase(value) : value
+    titlecase: (value: unknown): string => {
+        return titleCase(String(value))
     },
     /**
      * Reverses text
@@ -159,10 +159,8 @@ export const defaultFilters = {
      * const output   = `dlrow olleh`
      * ```
      */
-    reverse: function (value: unknown) {
-        return typeof value === 'string'
-            ? value.split('').reverse().join('')
-            : value
+    reverse: function (value: unknown): string {
+        return String(value).split('').reverse().join('')
     },
     /**
      * Slices text
@@ -174,12 +172,23 @@ export const defaultFilters = {
      * const output   = `el`
      * ```
      */
-    slice: function (value: unknown, start: unknown, end: unknown) {
-        return typeof value === 'string'
-            ? value.slice(
-                  parseInt(String(start), 10) || undefined,
-                  parseInt(String(end)) || undefined
-              )
-            : value
+    slice: function (value: unknown, start: unknown, end: unknown): string {
+        return String(value).slice(
+            parseInt(String(start), 10) || undefined,
+            parseInt(String(end)) || undefined
+        )
+    },
+    /**
+     * Parses size string to bytes
+     *
+     * @example
+     * ```
+     * const selector = `#size @ text | trim | parseSize`
+     * const input    = `7.4 GiB`
+     * const output   = `el`
+     * ```
+     */
+    parseSize: function (value: unknown): number {
+        return parseSize(defaultFilters.trim(value))
     },
 }

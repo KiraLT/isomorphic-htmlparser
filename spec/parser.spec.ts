@@ -15,6 +15,9 @@ const html = `
     <span class="content">My content</span>
     <span class="content content2">My content2</span>
 </div>
+<div id="size">
+    7.4 GB
+</div>
 </body>
 </html>
 `
@@ -98,5 +101,11 @@ describe('parseHTML', () => {
             'content',
             'content content2',
         ])
+    })
+
+    it('extracts heading and slice it', () => {
+        const dom = parseHTML(html)
+
+        expect(dom.extract('#size @ text | trim | parseSize')).toBe(7945689497.6)
     })
 })
