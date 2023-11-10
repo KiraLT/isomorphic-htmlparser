@@ -219,4 +219,18 @@ export const defaultFilters = {
         const parsed = parseFloat(defaultFilters.trim(value))
         return isNaN(parsed) ? undefined : parsed
     },
+    /**
+     * Parses date from text to timestamp
+     *
+     * @example
+     * ```
+     * const selector = `#date @ text | trim | parseDate`
+     * const input    = `2023-11-10 10:30`
+     * const output   = 1699605000000
+     * ```
+     */
+    parseDate: (value: unknown): number | undefined => {
+        const parsed = Date.parse(defaultFilters.trim(value))
+        return isNaN(parsed) ? undefined : parsed
+    },
 }

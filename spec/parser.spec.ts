@@ -21,6 +21,9 @@ const html = `
 <div id="number">
     7.4
 </div>
+<div id="date">
+    2023-11-10 10:30
+</div>
 </body>
 </html>
 `
@@ -124,5 +127,11 @@ describe('parseHTML', () => {
         const dom = parseHTML(html)
 
         expect(dom.extract('#number @ text | parseFloat')).toBe(7.4)
+    })
+
+    it('extracts date', () => {
+        const dom = parseHTML(html)
+
+        expect(dom.extract('#date @ text | parseDate')).toBe(1699605000000)
     })
 })
