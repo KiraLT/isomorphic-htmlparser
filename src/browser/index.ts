@@ -50,6 +50,11 @@ function createElement(element: Element): IsomorphicHTMLElement {
                 ? createElement(element.nextSibling)
                 : undefined
         },
+        get parentNode() {
+            return element.parentNode instanceof Element
+                ? createElement(element.parentNode)
+                : undefined
+        },
         get previousSibling() {
             return element.previousSibling instanceof Element
                 ? createElement(element.previousSibling)

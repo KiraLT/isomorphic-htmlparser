@@ -49,6 +49,10 @@ export interface IsomorphicHTMLElement {
     /**
      * Get next sibling
      */
+    parentNode?: IsomorphicHTMLElement
+    /**
+     * Get next sibling
+     */
     nextSibling?: IsomorphicHTMLElement
     /**
      * Get previous sibling

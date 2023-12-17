@@ -45,6 +45,11 @@ function createElement(
         get attrs() {
             return element ? $(element).attr() || {} : {}
         },
+        get parentNode() {
+            return element.parentNode instanceof Element
+                ? createElement($, element.parentNode)
+                : undefined
+        },
         get nextSibling() {
             return element?.nextSibling
                 ? createElement($, element.nextSibling)
