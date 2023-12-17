@@ -46,7 +46,7 @@ function createElement(
             return element ? $(element).attr() || {} : {}
         },
         get parentNode() {
-            return element.parentNode instanceof Element
+            return element?.parentNode instanceof Element
                 ? createElement($, element.parentNode)
                 : undefined
         },
