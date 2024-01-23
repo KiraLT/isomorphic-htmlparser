@@ -1,14 +1,12 @@
 # [1.2.0](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.1.1...v1.2.0) (2023-11-02)
 
-
 ### Bug Fixes
 
-* improved extraction filters ([a4ab272](https://github.com/KiraLT/isomorphic-htmlparser/commit/a4ab272e066b62a443e827bbb6259e2ce6a8a3ef))
-
+-   improved extraction filters ([a4ab272](https://github.com/KiraLT/isomorphic-htmlparser/commit/a4ab272e066b62a443e827bbb6259e2ce6a8a3ef))
 
 ### Features
 
-* number parser extraction filters ([4948811](https://github.com/KiraLT/isomorphic-htmlparser/commit/4948811ea4cc3aca3eb36e879f92a854fa13e0e8))
+-   number parser extraction filters ([4948811](https://github.com/KiraLT/isomorphic-htmlparser/commit/4948811ea4cc3aca3eb36e879f92a854fa13e0e8))
 
 ## [1.1.1](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.1.0...v1.1.1) (2023-03-22)
 

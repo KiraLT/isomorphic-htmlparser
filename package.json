@@ -85,6 +85,7 @@
     },
     "dependencies": {
         "cheerio": "^1.0.0-rc.12",
-        "common-stuff": "^1.10.3"
+        "common-stuff": "^1.10.3",
+        "dayjs": "^1.11.10"
     }
 }

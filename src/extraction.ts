@@ -1,4 +1,12 @@
 import { ensureArray, getByKey, titleCase, parseSize } from 'common-stuff'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+
+import 'dayjs/locale/en'
+
+dayjs.extend(customParseFormat)
+dayjs.extend(advancedFormat)
 
 interface ExtractExpression {
     selector: string
@@ -172,7 +180,7 @@ export const defaultFilters = {
      * const output   = `el`
      * ```
      */
-    slice: (value: unknown, start: unknown, end: unknown): string => {
+    slice: (value: unknown, start?: unknown, end?: unknown): string => {
         return String(value).slice(
             parseInt(String(start), 10) || undefined,
             parseInt(String(end)) || undefined,
@@ -229,8 +237,21 @@ export const defaultFilters = {
      * const output   = 1699605000000
      * ```
      */
-    parseDate: (value: unknown): number | undefined => {
-        const parsed = Date.parse(defaultFilters.trim(value))
+    parseDate: (
+        value: unknown,
+        format?: unknown,
+        locale?: unknown,
+    ): number | undefined => {
+        const cleanValue = (v: string) => v.replace(/[.]/g, ' ')
+
+        const parsed = dayjs(
+            cleanValue(defaultFilters.trim(value)),
+            format ? cleanValue(String(format)) : undefined,
+            locale ? String(locale) : undefined,
+        )
+            .toDate()
+            .getTime()
+
         return isNaN(parsed) ? undefined : parsed
     },
 }

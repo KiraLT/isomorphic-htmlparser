@@ -1,3 +1,4 @@
+import { defaultFilters } from '../src/extraction'
 import { parseHTML } from '../src/node'
 
 const html = `
@@ -7,8 +8,6 @@ const html = `
 
 <h1>
     My First Heading
-
-
 </h1>
 <p>My first paragraph.</p>
 <div class="body">
@@ -23,6 +22,9 @@ const html = `
 </div>
 <div id="date">
     2023-11-10 10:30
+</div>
+<div id="date2">
+    Dec. 20th '23
 </div>
 </body>
 </html>
@@ -132,6 +134,12 @@ describe('parseHTML', () => {
     it('extracts date', () => {
         const dom = parseHTML(html)
 
-        expect(dom.extract('#date @ text | parseDate')).toBe(1699605000000)
+        // Date parsing depends of current timezone
+        expect(dom.extract('#date @ text | parseDate')).toBeGreaterThan(
+            1699600000000,
+        )
+        expect(
+            dom.extract('#date2 @ text | parseDate:"MMM. Do \'YY"'),
+        ).toBeGreaterThan(1699600000000)
     })
 })
