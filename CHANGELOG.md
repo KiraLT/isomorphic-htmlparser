@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.2.0...v1.3.0) (2024-01-23)
+
+
+### Bug Fixes
+
+* date parsing improvements ([626e143](https://github.com/KiraLT/isomorphic-htmlparser/commit/626e14341bb9068709735c5177aba0546575fffb))
+
+
+### Features
+
+* `parseDate` filter ([3c36eab](https://github.com/KiraLT/isomorphic-htmlparser/commit/3c36eabb8597898c00af5a17b05c55cdcb846e13))
+
 # [1.2.0](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.1.1...v1.2.0) (2023-11-02)
 
 ### Bug Fixes
