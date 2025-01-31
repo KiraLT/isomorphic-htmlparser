@@ -12,19 +12,21 @@
     ],
     "type": "module",
     "main": "./dist/node/isomorphic-htmlparser.cjs",
-    "browser": "./dist/browser/isomorphic-htmlparser.modern.js",
+    "browser": "./dist/browser/isomorphic-htmlparser.mjs",
     "types": "./dist/index.d.ts",
-    "module": "./dist/node/isomorphic-htmlparser.module.js",
+    "module": "./dist/node/isomorphic-htmlparser.mjs",
     "unpkg": "./dist/browser/isomorphic-htmlparser.umd.js",
     "exports": {
         "types": "./dist/index.d.ts",
-        "require": "./dist/node/isomorphic-htmlparser.cjs",
-        "default": "./dist/node/isomorphic-htmlparser.modern.js"
+        "browser": "./dist/browser/isomorphic-htmlparser.mjs",
+        "umd": "./dist/browser/isomorphic-htmlparser.umd.js",
+        "import": "./dist/node/isomorphic-htmlparser.mjs",
+        "require": "./dist/node/isomorphic-htmlparser.cjs"
     },
     "scripts": {
         "test": "jest spec",
         "build": "npm run build:node && npm run build:browser && npm run build:umd && npm run build:docs",
-        "build:node": "microbundle build ./src/node/index.ts -f esm,cjs,modern --target node -o dist/node",
+        "build:node": "microbundle build ./src/node/index.ts -f esm,cjs --target node -o dist/node",
         "build:browser": "microbundle build ./src/browser/index.ts --target web -o dist/browser",
         "build:umd": "microbundle build ./src/browser/index.ts -f umd --external none -o dist/browser",
         "build:docs": "typedoc src/index.ts && cp -r ./demo docs/demo && cp -r ./dist docs/dist",
