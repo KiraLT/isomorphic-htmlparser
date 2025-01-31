@@ -1,15 +1,13 @@
-import { AnyNode, CheerioAPI, load } from 'cheerio'
+import { CheerioAPI, load } from 'cheerio'
 import { IsomorphicHTMLElement, ParseHTML } from '../dom'
 import { extractAll } from '../extraction'
+import type { AnyNode } from 'domhandler'
 
 export const parseHTML: ParseHTML = (html) => {
     return createElement(load(html))
 }
 
-function createElement(
-    $: CheerioAPI,
-    element?: AnyNode,
-): IsomorphicHTMLElement {
+function createElement($: CheerioAPI, element?: AnyNode): IsomorphicHTMLElement {
     return {
         find(selector) {
             const target = (
@@ -43,7 +41,7 @@ function createElement(
             return element ? $(element).text() : ''
         },
         get attrs() {
-            return element ? $(element).attr() || {} : {}
+            return element ? JSON.parse(JSON.stringify($(element).attr())) || {} : {}
         },
         get nextSibling() {
             return element?.nextSibling

@@ -68,7 +68,7 @@ export interface IsomorphicHTMLElement {
      * })
      * ```
      * @param selector HTML selector
-     * @extraFilters custom filters
+     * @param extraFilters custom filters
      */
     extract<T>(
         selector: string,
@@ -88,7 +88,7 @@ export interface IsomorphicHTMLElement {
      * })
      * ```
      * @param selector HTML selector
-     * @extraFilters custom filters
+     * @param extraFilters custom filters
      */
     extractAll<T>(selector: string, extraFilters?: Record<string, Filter>): T[]
 }

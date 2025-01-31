@@ -1,4 +1,3 @@
-import { defaultFilters } from '../src/extraction'
 import { parseHTML } from '../src/node'
 
 const html = `

@@ -11,22 +11,22 @@
         "cheerio"
     ],
     "type": "module",
-    "main": "./dist/isomorphic-htmlparser.cjs",
-    "browser": "./dist/isomorphic-htmlparser.browser.js",
+    "main": "./dist/node/isomorphic-htmlparser.cjs",
+    "browser": "./dist/browser/isomorphic-htmlparser.modern.js",
     "types": "./dist/index.d.ts",
-    "module": "./dist/isomorphic-htmlparser.module.js",
-    "unpkg": "./dist/isomorphic-htmlparser.umd.js",
+    "module": "./dist/node/isomorphic-htmlparser.module.js",
+    "unpkg": "./dist/browser/isomorphic-htmlparser.umd.js",
     "exports": {
         "types": "./dist/index.d.ts",
-        "require": "./dist/isomorphic-htmlparser.cjs",
-        "default": "./dist/isomorphic-htmlparser.browser.mjs"
+        "require": "./dist/node/isomorphic-htmlparser.cjs",
+        "default": "./dist/node/isomorphic-htmlparser.modern.js"
     },
     "scripts": {
         "test": "jest spec",
         "build": "npm run build:node && npm run build:browser && npm run build:umd && npm run build:docs",
-        "build:node": "microbundle build ./src/node/index.ts -f esm,cjs",
-        "build:browser": "microbundle build ./src/browser/index.ts -f umd",
-        "build:umd": "microbundle build ./src/browser/index.ts -f umd --external none",
+        "build:node": "microbundle build ./src/node/index.ts -f esm,cjs,modern --target node -o dist/node",
+        "build:browser": "microbundle build ./src/browser/index.ts --target web -o dist/browser",
+        "build:umd": "microbundle build ./src/browser/index.ts -f umd --external none -o dist/browser",
         "build:docs": "typedoc src/index.ts && cp -r ./demo docs/demo && cp -r ./dist docs/dist",
         "prettify": "prettier --write \"**/*.{ts,json,md}\""
     },
@@ -44,13 +44,14 @@
     },
     "homepage": "https://github.com/KiraLT/isomorphic-htmlparser#readme",
     "devDependencies": {
-        "@types/jest": "^29.5.11",
+        "@types/jest": "^29.5.14",
+        "@types/node": "^22.12.0",
         "jest": "^29.7.0",
         "microbundle": "^0.15.1",
-        "prettier": "^3.2.4",
-        "ts-jest": "^29.1.1",
-        "typedoc": "^0.25.7",
-        "typescript": "5.3.3"
+        "prettier": "^3.4.2",
+        "ts-jest": "^29.2.5",
+        "typedoc": "^0.27.6",
+        "typescript": "5.7.3"
     },
     "jest": {
         "preset": "ts-jest"
@@ -84,8 +85,9 @@
         ]
     },
     "dependencies": {
-        "cheerio": "^1.0.0-rc.12",
-        "common-stuff": "^1.10.3",
-        "dayjs": "^1.11.10"
+        "cheerio": "^1.0.0",
+        "common-stuff": "^1.11.1",
+        "dayjs": "^1.11.13",
+        "domhandler": "^5.0.3"
     }
 }
