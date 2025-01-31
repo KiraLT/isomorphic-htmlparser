@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.3.1...v1.3.2) (2025-01-31)
+
+
+### Bug Fixes
+
+* distribution fix ([d9fc40d](https://github.com/KiraLT/isomorphic-htmlparser/commit/d9fc40dd197fe88cb9ff12d87f3b953d485b3e56))
+
 ## [1.3.1](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.3.0...v1.3.1) (2025-01-31)
 
 
