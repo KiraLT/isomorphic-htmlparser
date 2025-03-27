@@ -25,6 +25,7 @@ const html = `
 <div id="date2">
     Dec. 20th '23
 </div>
+<div id="html"><strong>a</strong></div>
 </body>
 </html>
 `
@@ -43,6 +44,12 @@ describe('parseHTML', () => {
             'My content',
             'My content2',
         ])
+    })
+
+    it('extracts html from element', () => {
+        const dom = parseHTML(html)
+
+        expect(dom.find('#html')?.html).toBe('<strong>a</strong>')
     })
 
     it('parses attributes', () => {

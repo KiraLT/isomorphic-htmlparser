@@ -37,6 +37,9 @@ function createElement(element: Element): IsomorphicHTMLElement {
         get text() {
             return element.textContent || ''
         },
+        get html() {
+            return element.innerHTML
+        },
         get attrs() {
             return Object.assign(
                 {},

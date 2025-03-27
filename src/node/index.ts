@@ -7,7 +7,10 @@ export const parseHTML: ParseHTML = (html) => {
     return createElement(load(html))
 }
 
-function createElement($: CheerioAPI, element?: AnyNode): IsomorphicHTMLElement {
+function createElement(
+    $: CheerioAPI,
+    element?: AnyNode,
+): IsomorphicHTMLElement {
     return {
         find(selector) {
             const target = (
@@ -40,8 +43,13 @@ function createElement($: CheerioAPI, element?: AnyNode): IsomorphicHTMLElement 
         get text() {
             return element ? $(element).text() : ''
         },
+        get html() {
+            return element ? $(element).html() || '' : ''
+        },
         get attrs() {
-            return element ? JSON.parse(JSON.stringify($(element).attr())) || {} : {}
+            return element
+                ? JSON.parse(JSON.stringify($(element).attr())) || {}
+                : {}
         },
         get nextSibling() {
             return element?.nextSibling

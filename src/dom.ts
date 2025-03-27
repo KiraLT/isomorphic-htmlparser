@@ -41,9 +41,11 @@ export interface IsomorphicHTMLElement {
      */
     text: string
     /**
+     * Get the HTML content of the first element in the set of matched elements
+     */
+    html: string
+    /**
      * Get all element attributes
-     *
-     * @param selector HTML selector
      */
     attrs: Record<string, string>
     /**
