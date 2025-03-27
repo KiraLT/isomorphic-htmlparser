@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.3.2...v1.4.0) (2025-03-27)
+
+
+### Features
+
+* html extraction capability ([d767262](https://github.com/KiraLT/isomorphic-htmlparser/commit/d767262bd01fe5e4139c7dacfe1f246b7dfe13cc))
+
 ## [1.3.2](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.3.1...v1.3.2) (2025-01-31)
 
 
