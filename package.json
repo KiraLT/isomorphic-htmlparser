@@ -1,6 +1,6 @@
 {
     "name": "isomorphic-htmlparser",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "description": "HTML parser that works both in JavaScript and NodeJS with TypeScript support",
     "keywords": [
         "htmlparser",

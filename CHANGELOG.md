@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.4.0...v1.5.0) (2025-10-04)
+
+
+### Features
+
+* add remove method ([8ab0aaa](https://github.com/KiraLT/isomorphic-htmlparser/commit/8ab0aaa54e565e8783b3d9054672e49415b3ef51))
+
 # [1.4.0](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.3.2...v1.4.0) (2025-03-27)
 
 
