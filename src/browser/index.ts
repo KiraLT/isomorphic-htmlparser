@@ -58,5 +58,10 @@ function createElement(element: Element): IsomorphicHTMLElement {
                 ? createElement(element.previousSibling)
                 : undefined
         },
+        remove() {
+            if (element.parentElement) {
+                element.parentElement.removeChild(element)
+            }
+        },
     }
 }

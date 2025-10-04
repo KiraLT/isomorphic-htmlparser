@@ -93,4 +93,12 @@ export interface IsomorphicHTMLElement {
      * @param extraFilters custom filters
      */
     extractAll<T>(selector: string, extraFilters?: Record<string, Filter>): T[]
+    /**
+     * Remove element from the DOM
+     * @example
+     * ```
+     * el.remove()
+     * ```
+     */
+    remove(): void
 }

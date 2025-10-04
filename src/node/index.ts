@@ -61,5 +61,10 @@ function createElement(
                 ? createElement($, element.previousSibling)
                 : undefined
         },
+        remove() {
+            if (element) {
+                $(element).remove()
+            }
+        },
     }
 }
