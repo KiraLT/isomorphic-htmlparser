@@ -88,8 +88,8 @@
     },
     "dependencies": {
         "cheerio": "^1.0.0",
-        "common-stuff": "^1.11.1",
-        "dayjs": "^1.11.13",
+        "common-stuff": "^1.11.2",
+        "dayjs": "^1.11.19",
         "domhandler": "^5.0.3"
     }
 }

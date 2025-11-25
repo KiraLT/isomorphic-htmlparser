@@ -1,9 +1,9 @@
 import { ensureArray, getByKey, titleCase, parseSize } from 'common-stuff'
 import dayjs from 'dayjs'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-import advancedFormat from 'dayjs/plugin/advancedFormat'
+import customParseFormat from 'dayjs/plugin/customParseFormat.js'
+import advancedFormat from 'dayjs/plugin/advancedFormat.js'
 
-import 'dayjs/locale/en'
+import 'dayjs/locale/en.js'
 
 dayjs.extend(customParseFormat)
 dayjs.extend(advancedFormat)
