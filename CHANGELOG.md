@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.5.0...v1.5.1) (2025-11-25)
+
+
+### Bug Fixes
+
+* dayjs import fix ([531fd83](https://github.com/KiraLT/isomorphic-htmlparser/commit/531fd83ffd2a2ef1622998afbd36d849a8f24055))
+
 # [1.5.0](https://github.com/KiraLT/isomorphic-htmlparser/compare/v1.4.0...v1.5.0) (2025-10-04)
 
 
